@@ -1,6 +1,9 @@
 # bot.py
 import logging
 import random
+import os
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import threading
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application,
@@ -15,6 +18,21 @@ from flags_data import FLAGS
 
 # Logging setup
 logging.basicConfig(level=logging.INFO)
+
+# Dummy HTTP server to satisfy Render's Web Service port requirement
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Bot is alive!")
+
+def run_dummy_server():
+    port = int(os.environ.get("PORT", 10000))
+    server = HTTPServer(("0.0.0.0", port), SimpleHTTPRequestHandler)
+    server.serve_forever()
+
+# Start the dummy server in a background thread so it doesn't block the bot
+threading.Thread(target=run_dummy_server, daemon=True).start()
 
 # State constants for ConversationHandler
 SELECT_MODE, SELECT_SCOPE, SELECT_COUNT, IN_QUIZ = range(4)
