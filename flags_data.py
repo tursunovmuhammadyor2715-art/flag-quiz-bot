@@ -136,7 +136,7 @@ FLAGS = [
     {"country": "Morocco", "continent": "Africa", "flag_url": "https://flagcdn.com/w320/ma.png"},
     {"country": "Nigeria", "continent": "Africa", "flag_url": "https://flagcdn.com/w320/ng.png"},
     {"country": "Rwanda", "continent": "Africa", "flag_url": "https://flagcdn.com/w320/rw.png"},
-    {"country": "Senegal", "continent": "Africa", "flag_url": "https://flagcdn.com/w320/af.png"},
+    {"country": "Senegal", "continent": "Africa", "flag_url": "https://flagcdn.com/w320/sn.png"},
     {"country": "South Africa", "continent": "Africa", "flag_url": "https://flagcdn.com/w320/za.png"},
     {"country": "Sudan", "continent": "Africa", "flag_url": "https://flagcdn.com/w320/sd.png"},
     {"country": "Tanzania", "continent": "Africa", "flag_url": "https://flagcdn.com/w320/tz.png"},
