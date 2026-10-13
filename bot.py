@@ -20,19 +20,19 @@ from flags_data import FLAGS
 logging.basicConfig(level=logging.INFO)
 
 # Dummy HTTP server to satisfy Render's Web Service port requirement
-   class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-       def do_GET(self):
-           self.send_response(200)
-           self.send_header("Content-Type", "text/plain")
-           self.end_headers()
-           self.wfile.write(b"Bot is alive!")
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-Type", "text/plain")
+        self.end_headers()
+        self.wfile.write(b"Bot is alive!")
 
-       def do_HEAD(self):
-           self.send_response(200)
-           self.end_headers()
+    def do_HEAD(self):
+        self.send_response(200)
+        self.end_headers()
 
-       def log_message(self, *args):
-           pass
+    def log_message(self, *args):
+        pass
 
 def run_dummy_server():
     port = int(os.environ.get("PORT", 10000))
