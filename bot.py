@@ -20,11 +20,19 @@ from flags_data import FLAGS
 logging.basicConfig(level=logging.INFO)
 
 # Dummy HTTP server to satisfy Render's Web Service port requirement
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"Bot is alive!")
+   class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+       def do_GET(self):
+           self.send_response(200)
+           self.send_header("Content-Type", "text/plain")
+           self.end_headers()
+           self.wfile.write(b"Bot is alive!")
+
+       def do_HEAD(self):
+           self.send_response(200)
+           self.end_headers()
+
+       def log_message(self, *args):
+           pass
 
 def run_dummy_server():
     port = int(os.environ.get("PORT", 10000))
@@ -37,7 +45,7 @@ threading.Thread(target=run_dummy_server, daemon=True).start()
 # State constants for ConversationHandler
 SELECT_MODE, SELECT_SCOPE, SELECT_COUNT, IN_QUIZ = range(4)
 
-TOKEN = "8882888229:AAHfn2z9Q5WRvh3UayfwguBQNdumVwHqJNA"
+TOKEN = "8882888229:AAEe4mBnBwFJ_DKgxhNMG978RDSYZ2NQ2GA"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Starts the conversation and presents game mode options."""
